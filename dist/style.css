@@ -1,3 +1,20 @@
 .lkt-login {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--lkt-login-gap);
+    max-width: var(--lkt-login-max-width);
+    margin: auto;
+}
 
+.lkt-form-container {
+    min-width: var(--lkt-login-form-min-width, initial);
+    max-width: var(--lkt-login-form-max-width, initial);
+    width: var(--lkt-login-form-width, initial);
+}
+
+.lkt-login-form-nav {
+    margin-top: auto;
+    padding-top: 40px;
+    text-align: center;
 }
