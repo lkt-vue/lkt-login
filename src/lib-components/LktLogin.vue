@@ -146,7 +146,3 @@ const singUpUser = ref(''),
     </component>
 </div>
 </template>
-
-<style scoped>
-
-</style>

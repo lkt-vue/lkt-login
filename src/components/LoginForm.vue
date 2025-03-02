@@ -149,7 +149,3 @@ const computedResourceData = computed(() => {
         />
     </div>
 </template>
-
-<style scoped>
-
-</style>

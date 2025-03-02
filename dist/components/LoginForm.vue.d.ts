@@ -1,0 +1,53 @@
+type __VLS_Props = {
+    user: string;
+    password: string;
+    passwordConfirm: string;
+    resource: string;
+    userLabel: string;
+    passwordLabel: string;
+    passwordConfirmLabel: string;
+    buttonText: string;
+    formClass: string;
+    notEmailUser: boolean;
+    addPasswordConfirm: boolean;
+    minPasswordNumbers: number | string | undefined;
+    maxPasswordNumbers: number | string | undefined;
+    minPasswordChars: number | string | undefined;
+    maxPasswordChars: number | string | undefined;
+    minPasswordUpperChars: number | string | undefined;
+    maxPasswordUpperChars: number | string | undefined;
+    minPasswordLowerChars: number | string | undefined;
+    maxPasswordLowerChars: number | string | undefined;
+    minPasswordSpecialChars: number | string | undefined;
+    maxPasswordSpecialChars: number | string | undefined;
+};
+declare const _default: import("vue").DefineComponent<__VLS_Props, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    "update:user": (...args: any[]) => void;
+    "update:password": (...args: any[]) => void;
+    "update:passwordConfirm": (...args: any[]) => void;
+}, string, import("vue").PublicProps, Readonly<__VLS_Props> & Readonly<{
+    "onUpdate:user"?: ((...args: any[]) => any) | undefined;
+    "onUpdate:password"?: ((...args: any[]) => any) | undefined;
+    "onUpdate:passwordConfirm"?: ((...args: any[]) => any) | undefined;
+}>, {
+    user: string;
+    password: string;
+    passwordConfirm: string;
+    userLabel: string;
+    passwordLabel: string;
+    passwordConfirmLabel: string;
+    buttonText: string;
+    notEmailUser: boolean;
+    addPasswordConfirm: boolean;
+    minPasswordNumbers: number | string | undefined;
+    maxPasswordNumbers: number | string | undefined;
+    minPasswordChars: number | string | undefined;
+    maxPasswordChars: number | string | undefined;
+    minPasswordUpperChars: number | string | undefined;
+    maxPasswordUpperChars: number | string | undefined;
+    minPasswordLowerChars: number | string | undefined;
+    maxPasswordLowerChars: number | string | undefined;
+    minPasswordSpecialChars: number | string | undefined;
+    maxPasswordSpecialChars: number | string | undefined;
+}, {}, {}, {}, string, import("vue").ComponentProvideOptions, false, {}, any>;
+export default _default;
