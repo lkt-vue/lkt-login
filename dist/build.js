@@ -1,257 +1,137 @@
-import { defineComponent, ref, computed, watch, resolveComponent, createElementBlock, openBlock, Fragment, createElementVNode, normalizeClass, createVNode, createBlock, createCommentVNode, useSlots, withCtx, resolveDynamicComponent } from "vue";
-const _hoisted_1$1 = { class: "lkt-login-form-nav" };
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
-  __name: "LoginForm",
-  props: {
-    user: { default: "" },
-    password: { default: "" },
-    passwordConfirm: { default: "" },
-    resource: {},
-    userLabel: { default: "" },
-    passwordLabel: { default: "" },
-    passwordConfirmLabel: { default: "" },
-    buttonText: { default: "" },
-    formClass: {},
-    notEmailUser: { type: Boolean, default: false },
-    addPasswordConfirm: { type: Boolean, default: false },
-    minPasswordNumbers: { default: void 0 },
-    maxPasswordNumbers: { default: void 0 },
-    minPasswordChars: { default: void 0 },
-    maxPasswordChars: { default: void 0 },
-    minPasswordUpperChars: { default: void 0 },
-    maxPasswordUpperChars: { default: void 0 },
-    minPasswordLowerChars: { default: void 0 },
-    maxPasswordLowerChars: { default: void 0 },
-    minPasswordSpecialChars: { default: void 0 },
-    maxPasswordSpecialChars: { default: void 0 }
-  },
-  emits: [
-    "update:user",
-    "update:password",
-    "update:passwordConfirm"
-  ],
-  setup(__props, { emit: __emit }) {
-    const emit = __emit;
-    const props = __props;
-    const userVal = ref(props.user), passwordVal = ref(props.password), passwordConfirmVal = ref(props.passwordConfirm);
-    const validUser = ref(false), validPassword = ref(false), validPasswordConfirm = ref(false);
-    const disabledButton = computed(() => {
-      if (!validUser.value || !validPassword.value) return true;
-      if (props.addPasswordConfirm && !validPasswordConfirm.value) return true;
-      return false;
-    });
-    watch(() => props.user, (v) => userVal.value = v);
-    watch(() => props.password, (v) => passwordVal.value = v);
-    watch(() => props.passwordConfirm, (v) => passwordConfirmVal.value = v);
-    watch(userVal, (v) => emit("update:user", v));
-    watch(passwordVal, (v) => emit("update:password", v));
-    watch(passwordConfirmVal, (v) => emit("update:passwordConfirm", v));
-    const computedResourceData = computed(() => {
-      return {
-        user: userVal.value,
-        password: passwordVal.value
-      };
-    });
-    return (_ctx, _cache) => {
-      const _component_lkt_field_text = resolveComponent("lkt-field-text");
-      const _component_lkt_button = resolveComponent("lkt-button");
-      return openBlock(), createElementBlock(Fragment, null, [
-        createElementVNode("div", {
-          class: normalizeClass(["lkt-login-form", _ctx.formClass])
-        }, [
-          createVNode(_component_lkt_field_text, {
-            modelValue: userVal.value,
-            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => userVal.value = $event),
-            valid: validUser.value,
-            "onUpdate:valid": _cache[1] || (_cache[1] = ($event) => validUser.value = $event),
-            label: _ctx.userLabel,
-            "label-icon": "icon-user-o",
-            mandatory: "",
-            "auto-validation": ""
-          }, null, 8, ["modelValue", "valid", "label"]),
-          createVNode(_component_lkt_field_text, {
-            modelValue: passwordVal.value,
-            "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => passwordVal.value = $event),
-            valid: validPassword.value,
-            "onUpdate:valid": _cache[3] || (_cache[3] = ($event) => validPassword.value = $event),
-            label: _ctx.passwordLabel,
-            "label-icon": "icon-key2",
-            mandatory: "",
-            "is-password": "",
-            "auto-validation": "",
-            "min-numbers": _ctx.minPasswordNumbers,
-            "min-chars": _ctx.minPasswordChars,
-            "min-upper-chars": _ctx.minPasswordUpperChars,
-            "min-lower-chars": _ctx.minPasswordLowerChars,
-            "min-special-chars": _ctx.minPasswordSpecialChars,
-            "max-numbers": _ctx.maxPasswordNumbers,
-            "max-chars": _ctx.maxPasswordChars,
-            "max-upper-chars": _ctx.maxPasswordUpperChars,
-            "max-lower-chars": _ctx.maxPasswordLowerChars,
-            "max-special-chars": _ctx.maxPasswordSpecialChars,
-            "check-equal-to": _ctx.addPasswordConfirm ? passwordConfirmVal.value : void 0
-          }, null, 8, ["modelValue", "valid", "label", "min-numbers", "min-chars", "min-upper-chars", "min-lower-chars", "min-special-chars", "max-numbers", "max-chars", "max-upper-chars", "max-lower-chars", "max-special-chars", "check-equal-to"]),
-          _ctx.addPasswordConfirm ? (openBlock(), createBlock(_component_lkt_field_text, {
-            key: 0,
-            modelValue: passwordConfirmVal.value,
-            "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => passwordConfirmVal.value = $event),
-            valid: validPasswordConfirm.value,
-            "onUpdate:valid": _cache[5] || (_cache[5] = ($event) => validPasswordConfirm.value = $event),
-            label: _ctx.passwordConfirmLabel,
-            "label-icon": "icon-key2",
-            mandatory: "",
-            "is-password": "",
-            "auto-validation": "",
-            "min-numbers": _ctx.minPasswordNumbers,
-            "min-chars": _ctx.minPasswordChars,
-            "min-upper-chars": _ctx.minPasswordUpperChars,
-            "min-lower-chars": _ctx.minPasswordLowerChars,
-            "min-special-chars": _ctx.minPasswordSpecialChars,
-            "max-numbers": _ctx.maxPasswordNumbers,
-            "max-chars": _ctx.maxPasswordChars,
-            "max-upper-chars": _ctx.maxPasswordUpperChars,
-            "max-lower-chars": _ctx.maxPasswordLowerChars,
-            "max-special-chars": _ctx.maxPasswordSpecialChars,
-            "check-equal-to": passwordVal.value
-          }, null, 8, ["modelValue", "valid", "label", "min-numbers", "min-chars", "min-upper-chars", "min-lower-chars", "min-special-chars", "max-numbers", "max-chars", "max-upper-chars", "max-lower-chars", "max-special-chars", "check-equal-to"])) : createCommentVNode("", true)
-        ], 2),
-        createElementVNode("div", _hoisted_1$1, [
-          createVNode(_component_lkt_button, {
-            text: _ctx.buttonText,
-            disabled: disabledButton.value,
-            resource: _ctx.resource,
-            "resource-data": computedResourceData.value
-          }, null, 8, ["text", "disabled", "resource", "resource-data"])
-        ])
-      ], 64);
-    };
+var __defProp = Object.defineProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+var _a, _b;
+import { defineComponent, mergeDefaults, useSlots, resolveComponent, createElementBlock, openBlock, createBlock, createCommentVNode, resolveDynamicComponent, normalizeClass, withCtx, createElementVNode, normalizeProps, mergeProps, Fragment, renderList } from "vue";
+import "lkt-string-tools";
+import "lkt-i18n";
+var Q = ((d) => (d.Button = "button", d.Submit = "submit", d.Reset = "reset", d.Anchor = "anchor", d.Content = "content", d.Switch = "switch", d.HiddenSwitch = "hidden-switch", d.Split = "split", d.SplitLazy = "split-lazy", d.SplitEver = "split-ever", d.Tooltip = "tooltip", d.TooltipLazy = "tooltip-lazy", d.TooltipEver = "tooltip-ever", d.FileUpload = "file-upload", d.ImageUpload = "image-upload", d))(Q || {});
+var Y = ((s) => (s.Text = "text", s.Email = "email", s.Tel = "tel", s.Password = "password", s.Search = "search", s.Number = "number", s.Color = "color", s.Range = "range", s.Textarea = "textarea", s.Html = "html", s.Date = "date", s.File = "file", s.Image = "image", s.Select = "select", s.Check = "check", s.Switch = "switch", s.Calc = "calc", s.Card = "card", s.Elements = "elements", s))(Y || {});
+var qt = ["lktDateProps", "lktStrictItem", "lktExcludedProps"], a = (_a = class {
+  constructor(t) {
   }
-});
+  feed(t = {}, o = this) {
+    if (typeof t == "object") for (let [r, i] of Object.entries(t)) o.assignProp(r, i);
+  }
+  assignProp(t, o) {
+    if (!(qt.includes(t) || _a.lktExcludedProps.includes(t)) && true) {
+      if (_a.lktDateProps.includes(t)) {
+        this[t] = new Date(o);
+        return;
+      }
+      this[t] = o;
+    }
+  }
+}, __publicField(_a, "lktAllowUndefinedProps", []), __publicField(_a, "lktExcludedProps", []), __publicField(_a, "lktDateProps", []), __publicField(_a, "lktStrictItem", false), __publicField(_a, "lktDefaultValues", []), _a);
+var J = ((i) => (i.Auto = "auto", i.Always = "always", i.Lazy = "lazy", i.Ever = "ever", i))(J || {});
+var Z = ((r) => (r.Transform = "transform", r.Height = "height", r.Display = "display", r))(Z || {});
+var _ = ((g) => (g.Href = "href", g.RouterLink = "router-link", g.RouterLinkBack = "router-link-back", g.Mail = "mail", g.Tel = "tel", g.Tab = "tab", g.Download = "download", g.Action = "action", g.Legacy = "", g))(_ || {});
+var tt = ((i) => (i.None = "", i.Field = "field", i.Button = "button", i.Anchor = "anchor", i))(tt || {});
+var et = ((l) => (l.A0 = "a0", l.A1 = "a1", l.A2 = "a2", l.A3 = "a3", l.A4 = "a4", l.A5 = "a5", l.A6 = "a6", l.A7 = "a7", l.A8 = "a8", l.A9 = "a9", l))(et || {});
+var ot = ((r) => (r.List = "list", r.Inline = "inline", r.Count = "count", r))(ot || {});
+var rt = ((f) => (f.MinStringLength = "min-str", f.MinNumber = "min-num", f.MaxStringLength = "max-str", f.MaxNumber = "max-num", f.Email = "email", f.Empty = "empty", f.EqualTo = "equal-to", f.MinNumbers = "min-numbers", f.MaxNumbers = "max-numbers", f.MinChars = "min-chars", f.MaxChars = "max-chars", f.MinUpperChars = "min-upper-chars", f.MaxUpperChars = "max-upper-chars", f.MinLowerChars = "min-lower-chars", f.MaxLowerChars = "max-lower-chars", f.MinSpecialChars = "min-special-chars", f.MaxSpecialChars = "max-special-chars", f))(rt || {});
+var at = ((r) => (r.Ok = "ok", r.Ko = "ko", r.Info = "info", r))(at || {});
+var it = ((m) => (m.H1 = "h1", m.H2 = "h2", m.H3 = "h3", m.H4 = "h4", m.H5 = "h5", m.H6 = "h6", m))(it || {});
+var nt = ((o) => (o.NotDefined = "", o.Button = "button", o))(nt || {});
+var lt = ((o) => (o.Start = "start", o.End = "end", o))(lt || {});
+var st = ((r) => (r.Create = "create", r.Update = "update", r.Read = "read", r))(st || {});
+var ft = ((o) => (o.Inline = "inline", o.Modal = "modal", o))(ft || {});
+var ut = ((o) => (o.Top = "top", o.Bottom = "bottom", o))(ut || {});
+var dt = ((r) => (r.Changed = "changed", r.Always = "always", r.Never = "never", r))(dt || {});
+var mt = ((r) => (r.Manual = "manual", r.Auto = "auto", r.Delay = "delay", r))(mt || {});
+var ct = ((o) => (o.Toast = "toast", o.Inline = "inline", o))(ct || {});
+var A = (_b = class extends a {
+  constructor(t = {}) {
+    super();
+    __publicField(this, "loginForm");
+    __publicField(this, "singUpForm");
+    this.feed(t);
+  }
+}, __publicField(_b, "lktDefaultValues", ["loginForm", "singUpForm"]), _b);
+var pt = ((r) => (r.Anchor = "anchor", r.Button = "button", r.Entry = "entry", r))(pt || {});
+var gt = ((o) => (o.Modal = "modal", o.Confirm = "confirm", o))(gt || {});
+var Ct = ((m) => (m.Pages = "pages", m.PrevNext = "prev-next", m.PagesPrevNext = "pages-prev-next", m.PagesPrevNextFirstLast = "pages-prev-next-first-last", m.LoadMore = "load-more", m.Infinite = "infinite", m))(Ct || {});
+var xt = ((r) => (r.None = "", r.Incremental = "incremental", r.Decremental = "decremental", r))(xt || {});
+var bt = ((n) => (n.NotDefined = "", n.Hidden = "hidden", n.Integer = "integer", n.Decimal = "decimal", n.Auto = "auto", n))(bt || {});
+var ht = ((n) => (n.Table = "table", n.Item = "item", n.Ul = "ul", n.Ol = "ol", n.Carousel = "carousel", n))(ht || {});
+var kt = ((i) => (i[i.Auto = 0] = "Auto", i[i.PreferItem = 1] = "PreferItem", i[i.PreferCustomItem = 2] = "PreferCustomItem", i[i.PreferColumns = 3] = "PreferColumns", i))(kt || {});
+var yt = ((o) => (o.NotDefined = "", o.ActionIcon = "action-icon", o))(yt || {});
+var Lt = ((o) => (o.Message = "message", o.Button = "button", o))(Lt || {});
+var Bt = ((r) => (r.Left = "left", r.Center = "center", r.Right = "right", r))(Bt || {});
+var It = ((o) => (o.Fixed = "fixed", o.Absolute = "absolute", o))(It || {});
+var Mt = ((i) => (i.Top = "top", i.Bottom = "bottom", i.Center = "center", i.ReferrerCenter = "referrer-center", i))(Mt || {});
+var Vt = ((n) => (n.Left = "left", n.Right = "right", n.Center = "center", n.LeftCorner = "left-corner", n.RightCorner = "right-corner", n))(Vt || {});
+var Et = ((c) => (c.LktAnchor = "lkt-anchor", c.LktLayoutAccordion = "lkt-layout-accordion", c.LktTextAccordion = "lkt-text-accordion", c.LktLayoutBox = "lkt-layout-box", c.LktTextBox = "lkt-text-box", c.LktButton = "lkt-button", c.LktLayout = "lkt-layout", c.LktHeader = "lkt-header", c.LktIcon = "lkt-icon", c.LktImage = "lkt-image", c.LktText = "lkt-text", c))(Et || {});
+var Dt = ((i) => (i.Grid = "grid", i.FlexRow = "flex-row", i.FlexRows = "flex-rows", i.FlexColumn = "flex-column", i))(Dt || {});
+var St = ((i) => (i.None = "", i.Focus = "focus", i.Blur = "blur", i.Always = "always", i))(St || {});
+var vt = ((r) => (r.Auto = "auto", r.Local = "local", r.Remote = "remote", r))(vt || {});
+var Tt = ((n) => (n.StorageUnit = "unit", n.Directory = "dir", n.Image = "img", n.Video = "vid", n.File = "file", n))(Tt || {});
+var Ot = ((n) => (n.Refresh = "refresh", n.Close = "close", n.ReOpen = "reOpen", n.Exec = "exec", n.Open = "open", n))(Ot || {});
+var Ft = ((o) => (o.Asc = "asc", o.Desc = "desc", o))(Ft || {});
+var wt = ((l) => (l.Create = "create", l.Update = "update", l.Edit = "edit", l.Drop = "drop", l.Sort = "sort", l.SwitchEditMode = "switch-edit-mode", l.InlineEdit = "inline-edit", l.InlineCreate = "inline-create", l.ModalCreate = "modal-create", l.InlineCreateEver = "inline-create-ever", l))(wt || {});
+var At = ((o) => (o.Lazy = "lazy", o.Ever = "ever", o))(At || {});
+var jt = ((o) => (o.Quick = "quick", o.Full = "full", o))(jt || {});
+function Lr(e) {
+  let t = new e(), o = {};
+  if (!Array.isArray(e.lktDefaultValues)) throw new Error("lktDefaultValues must be a keys array.");
+  for (let r of e.lktDefaultValues) r in t && (o[r] = t[r]);
+  return o;
+}
 const _hoisted_1 = { class: "lkt-login" };
+const _hoisted_2 = { class: "lkt-grid-1" };
+const _hoisted_3 = { class: "lkt-grid-1" };
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "LktLogin",
-  props: {
-    loginResource: { default: "" },
-    singUpResource: { default: "" },
-    userLabel: { default: "" },
-    passwordLabel: { default: "" },
-    passwordConfirmLabel: { default: "" },
-    loginButtonText: { default: "" },
-    singUpButtonText: { default: "" },
-    loginFormComponent: { default: "section" },
-    loginFormClass: {},
-    loginFormInnerClass: {},
-    singUpFormComponent: { default: "section" },
-    singUpFormClass: {},
-    singUpFormInnerClass: {},
-    loginTitle: { default: "" },
-    singUpTitle: { default: "" },
-    notEmailUser: { type: Boolean, default: false },
-    minPasswordNumbers: { default: void 0 },
-    maxPasswordNumbers: { default: void 0 },
-    minPasswordChars: { default: void 0 },
-    maxPasswordChars: { default: void 0 },
-    minPasswordUpperChars: { default: void 0 },
-    maxPasswordUpperChars: { default: void 0 },
-    minPasswordLowerChars: { default: void 0 },
-    maxPasswordLowerChars: { default: void 0 },
-    minPasswordSpecialChars: { default: void 0 },
-    maxPasswordSpecialChars: { default: void 0 }
-  },
-  emits: [],
-  setup(__props, { emit: __emit }) {
+  props: /* @__PURE__ */ mergeDefaults({
+    loginForm: {},
+    singUpForm: {}
+  }, Lr(A)),
+  setup(__props) {
     useSlots();
-    const loginUser = ref(""), loginPassword = ref("");
-    const singUpUser = ref(""), singUpPassword = ref(""), singUpPasswordConfirm = ref("");
     return (_ctx, _cache) => {
-      const _component_lkt_box = resolveComponent("lkt-box");
+      var _a2, _b2, _c, _d, _e, _f;
+      const _component_lkt_header = resolveComponent("lkt-header");
+      const _component_lkt_field = resolveComponent("lkt-field");
+      const _component_lkt_button = resolveComponent("lkt-button");
       return openBlock(), createElementBlock("div", _hoisted_1, [
-        _ctx.loginFormComponent === "lkt-box" ? (openBlock(), createBlock(_component_lkt_box, {
+        _ctx.loginForm ? (openBlock(), createBlock(resolveDynamicComponent((_b2 = (_a2 = _ctx.loginForm.container) == null ? void 0 : _a2.tag) != null ? _b2 : "section"), {
           key: 0,
-          title: _ctx.loginTitle,
-          class: normalizeClass(["lkt-form-container", _ctx.loginFormClass])
+          class: normalizeClass(["lkt-form-container", (_c = _ctx.loginForm.container) == null ? void 0 : _c.class])
         }, {
           default: withCtx(() => [
-            createVNode(_sfc_main$1, {
-              user: loginUser.value,
-              "onUpdate:user": _cache[0] || (_cache[0] = ($event) => loginUser.value = $event),
-              password: loginPassword.value,
-              "onUpdate:password": _cache[1] || (_cache[1] = ($event) => loginPassword.value = $event),
-              "user-label": _ctx.userLabel,
-              "password-label": _ctx.passwordLabel,
-              "password-confirm-label": _ctx.passwordConfirmLabel,
-              "button-text": _ctx.loginButtonText,
-              "form-class": _ctx.loginFormInnerClass,
-              resource: _ctx.loginResource
-            }, null, 8, ["user", "password", "user-label", "password-label", "password-confirm-label", "button-text", "form-class", "resource"])
+            createElementVNode("form", _hoisted_2, [
+              _ctx.loginForm.header ? (openBlock(), createBlock(_component_lkt_header, normalizeProps(mergeProps({ key: 0 }, _ctx.loginForm.header)), null, 16)) : createCommentVNode("", true),
+              (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.loginForm.fields, (field) => {
+                return openBlock(), createBlock(_component_lkt_field, mergeProps({
+                  modelValue: _ctx.loginForm.modelValue[field.key],
+                  "onUpdate:modelValue": ($event) => _ctx.loginForm.modelValue[field.key] = $event,
+                  ref_for: true
+                }, field.field), null, 16, ["modelValue", "onUpdate:modelValue"]);
+              }), 256)),
+              _ctx.loginForm.submitButton ? (openBlock(), createBlock(_component_lkt_button, normalizeProps(mergeProps({ key: 1 }, _ctx.loginForm.submitButton)), null, 16)) : createCommentVNode("", true)
+            ])
           ]),
           _: 1
-        }, 8, ["title", "class"])) : (openBlock(), createBlock(resolveDynamicComponent(_ctx.loginFormComponent), {
+        }, 8, ["class"])) : createCommentVNode("", true),
+        _ctx.singUpForm ? (openBlock(), createBlock(resolveDynamicComponent((_e = (_d = _ctx.singUpForm.container) == null ? void 0 : _d.tag) != null ? _e : "section"), {
           key: 1,
-          class: normalizeClass(["lkt-form-container", _ctx.loginFormClass])
+          class: normalizeClass(["lkt-form-container", (_f = _ctx.singUpForm.container) == null ? void 0 : _f.class])
         }, {
           default: withCtx(() => [
-            createVNode(_sfc_main$1, {
-              user: loginUser.value,
-              "onUpdate:user": _cache[2] || (_cache[2] = ($event) => loginUser.value = $event),
-              password: loginPassword.value,
-              "onUpdate:password": _cache[3] || (_cache[3] = ($event) => loginPassword.value = $event),
-              "user-label": _ctx.userLabel,
-              "password-label": _ctx.passwordLabel,
-              "password-confirm-label": _ctx.passwordConfirmLabel,
-              "button-text": _ctx.loginButtonText,
-              "form-class": _ctx.loginFormInnerClass,
-              resource: _ctx.loginResource
-            }, null, 8, ["user", "password", "user-label", "password-label", "password-confirm-label", "button-text", "form-class", "resource"])
+            createElementVNode("form", _hoisted_3, [
+              _ctx.singUpForm.header ? (openBlock(), createBlock(_component_lkt_header, normalizeProps(mergeProps({ key: 0 }, _ctx.singUpForm.header)), null, 16)) : createCommentVNode("", true),
+              (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.singUpForm.fields, (field) => {
+                return openBlock(), createBlock(_component_lkt_field, mergeProps({
+                  modelValue: _ctx.singUpForm.modelValue[field.key],
+                  "onUpdate:modelValue": ($event) => _ctx.singUpForm.modelValue[field.key] = $event,
+                  ref_for: true
+                }, field.field), null, 16, ["modelValue", "onUpdate:modelValue"]);
+              }), 256)),
+              _ctx.singUpForm.submitButton ? (openBlock(), createBlock(_component_lkt_button, normalizeProps(mergeProps({ key: 1 }, _ctx.singUpForm.submitButton)), null, 16)) : createCommentVNode("", true)
+            ])
           ]),
           _: 1
-        }, 8, ["class"])),
-        _ctx.singUpFormComponent === "lkt-box" ? (openBlock(), createBlock(_component_lkt_box, {
-          key: 2,
-          title: _ctx.singUpTitle,
-          class: normalizeClass(["lkt-form-container", _ctx.singUpFormClass])
-        }, {
-          default: withCtx(() => [
-            createVNode(_sfc_main$1, {
-              user: singUpUser.value,
-              "onUpdate:user": _cache[4] || (_cache[4] = ($event) => singUpUser.value = $event),
-              password: singUpPassword.value,
-              "onUpdate:password": _cache[5] || (_cache[5] = ($event) => singUpPassword.value = $event),
-              "password-confirm": singUpPasswordConfirm.value,
-              "onUpdate:passwordConfirm": _cache[6] || (_cache[6] = ($event) => singUpPasswordConfirm.value = $event),
-              "user-label": _ctx.userLabel,
-              "password-label": _ctx.passwordLabel,
-              "password-confirm-label": _ctx.passwordConfirmLabel,
-              "button-text": _ctx.singUpButtonText,
-              "form-class": _ctx.singUpFormInnerClass,
-              "add-password-confirm": "",
-              resource: _ctx.singUpResource
-            }, null, 8, ["user", "password", "password-confirm", "user-label", "password-label", "password-confirm-label", "button-text", "form-class", "resource"])
-          ]),
-          _: 1
-        }, 8, ["title", "class"])) : (openBlock(), createBlock(resolveDynamicComponent(_ctx.singUpFormComponent), {
-          key: 3,
-          class: normalizeClass(["lkt-form-container", _ctx.singUpFormClass])
-        }, {
-          default: withCtx(() => [
-            createVNode(_sfc_main$1, {
-              user: singUpUser.value,
-              "onUpdate:user": _cache[7] || (_cache[7] = ($event) => singUpUser.value = $event),
-              password: singUpPassword.value,
-              "onUpdate:password": _cache[8] || (_cache[8] = ($event) => singUpPassword.value = $event),
-              "password-confirm": singUpPasswordConfirm.value,
-              "onUpdate:passwordConfirm": _cache[9] || (_cache[9] = ($event) => singUpPasswordConfirm.value = $event),
-              "user-label": _ctx.userLabel,
-              "password-label": _ctx.passwordLabel,
-              "password-confirm-label": _ctx.passwordConfirmLabel,
-              "button-text": _ctx.singUpButtonText,
-              "form-class": _ctx.singUpFormInnerClass,
-              "add-password-confirm": "",
-              resource: _ctx.singUpResource
-            }, null, 8, ["user", "password", "password-confirm", "user-label", "password-label", "password-confirm-label", "button-text", "form-class", "resource"])
-          ]),
-          _: 1
-        }, 8, ["class"]))
+        }, 8, ["class"])) : createCommentVNode("", true)
       ]);
     };
   }
